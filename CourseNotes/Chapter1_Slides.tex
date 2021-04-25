@@ -1,0 +1,65 @@
+\documentclass{beamer}
+\usepackage{etex}
+\usetheme{Antibes}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subfig}
+%\definecolor{cardinal}{rgb}{0.77, 0.12, 0.23}
+%\usecolortheme[named=cardinal]{structure}
+%\setbeamercolor{block title}{bg=cardinal,fg=black}
+ \usepackage{tikz}
+ \usetikzlibrary{patterns,snakes,plotmarks}
+ \usepackage{multirow}
+% \usetikzlibrary{shadows}
+\usepackage{epstopdf}
+\usepackage{nicefrac}
+\usepackage{lmodern}
+\usepackage{pgfplots}
+\usepackage{qtree}
+\newcommand*{\Scale}[2][4]{\scalebox{#1}{\ensuremath{#2}}}%
+\DeclareCaptionLabelSeparator{horse}{:\,\,} % change according to your needs
+\captionsetup{
+  labelsep = horse,
+  figureposition = bottom % used to get the correct vertical space between the figure and the caption
+}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{items}[circle]
+\setbeamertemplate{enumerate items}[square]
+\theoremstyle{definition}
+\newtheorem*{exs}{Examples}
+\newtheorem{ex}{Example}
+\newtheorem*{exc}{Exercise}
+\input{notes_macros.tex}
+%\usepackage{booktabs}
+\setlength{\parindent}{0pt}
+%\setbeameroption{show notes}
+ \setbeamerfont{note page}{size=\tiny}
+%\setbeamertemplate{note page}[plain]
+%\setbeameroption{show only notes}
+\title{Math 628 - Computational Statistics}
+\author{Drew Lazar}
+\institute{Ball State University}
+\date{\today}
+
+\begin{document}
+\begin{frame}
+    \titlepage
+\end{frame}
+\section{Chapter 1}
+\begin{frame}
+\begin{block}{Problem 2.1}
+Let 
+\[
+f(x;\theta) = (1-\theta)^{x-1}\theta,\, x=1,2,3,4,\ldots, \, \theta \in \Omega = (0,1).   
+\]
+\bn
+\im Form $L(\theta), \ell(\theta)$
+\im Find the MLE, $\hat{\theta}$ 
+\en 
+\end{block}
+\end{frame}  
+
+
+
+\end{document} 

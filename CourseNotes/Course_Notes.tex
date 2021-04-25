@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts}
+\usepackage{enumerate}
+\usepackage{subfig}
+\input{notes_macros}
+\setlength\parindent{0pt}
+\setlength{\parskip}{\baselineskip}%
+\begin{document}
+
+\CPT{1}
+\iex{2.1} Examples of optimization in statistics
+\bn
+\im \textbf{Maximizing likelihood:} Given sample from parameterized distribution find parameters that maximize likelihood function. 
+\im \textbf{Minimizing risk in Bayesian decision problem:} Using Bayes erule minimize risk of misclassification. 
+\im \textbf{Solving nonlinear least squares:} Given data from parameterized distribution find parameters that minimize sum of squared residuals of model to observed data. 
+\en 
+
+\idf{2.1} Let $X_1,\ldots,X_n$ be a random sample from a random variable $X$ with pdf (or pmf) $f(x;\theta)$ for $\theta \in \Omega (\text{ parameter space)})$. 
+\bn
+\im
+\[
+L(\theta) = f(x_1,\ldots,x_n;\theta) = \Pi_i^{n}f(x_i,\theta)
+\]
+is the \textbf{likelihood function}.     
+\im The natural log of $L(\theta),$
+\[
+\ell(\theta)=\ln[L(\theta)]
+\]
+is known as the \textbf{log-likelihood function}. 
+\im The \textbf{estimating or score equation} is 
+\[ \frac{\partial \ell}{\partial \theta} = 0
+\]
+\en
+and its solution often provides the $\theta$ that maximizes $L(\theta)$. This $\theta$ is known as the maximum likelihood estimator and is denoted $\hat{\theta}$. 
+
+\prbm{2.1} Let
+\[
+f(x;\theta) = (1-\theta)^{x-1}\theta,\, x=1,2,3,4,\ldots, \, \theta \in \Omega = (0,1).
+\]
+\bn
+\im Form $L(\theta), \ell(\theta)$
+\im Find the MLE, $\hat{\theta}$
+\en 
+\textbf{Solution: } 
+\bn 
+\im 
+\begin{align*} 
+L(\theta) &= \Pi_i^n f(x_i,\theta) = \Pi_i^n (1-\theta)^{x_i-1}\theta = (1-\theta)^{\sum x_i - n}\theta^n \\
+\ell(\theta) &= \ln[L(\theta)] = \left(\sum x_i -n\right)(\ln(1-\theta) + n\ln(\theta))
+\end{align*} 
+\im
+\begin{align*} 
+\text{Set } &\ell'(\theta) = -\dfrac{\sum x_i - n}{1-\theta} + \frac{n}{\theta} = 0 \\
+&\iff  \dfrac{-\theta(\sum x_i - n) +n(1-\theta)}{(1-\theta)\theta} = 0 \\
+&\iff -\theta \sum x_i + n = 0 \\
+&\iff \theta = \dfrac{n}{\sum x_i} = \dfrac{1}{\bar{x}}  
+\end{align*} 
+\en 
+Does $\frac{1}{\bar{x}}$ maximize $L(\theta)$? Use the second derivative test!
+\[
+\ell''(\theta) = -\dfrac{\sum(x_i-n)}{(1-\theta)^2} - \dfrac{n}{\theta^2}.
+\]
+$\ell''(\theta) < 0 \, \forall \, \theta, \text{ so } \ell''(1/\bar{x})<0$. Thus, $\hat{\theta} = 1/\bar{x}$. 
+
+Note: $\theta = 1/E(X) = 1/\mu$ and $\hat{\theta} = 1/\bar{x}$. 
+
+\iex{2.2} Let $X$ be a random variable with pdf 
+\[ f(x;\gamma,\theta) = \frac{1}{\pi \gamma[1 + \frac{x-\theta}{\gamma}]^2}, -\infty<x<\infty
+\]
+Then $X$ has Cauchy distribution denoted $X \sim \text{Cauchy}(\theta,\gamma)$. Now, let $X\sim\text{Cauchy}(\theta,1)$ so that 
+\[ f(x;\gamma,\theta) = \frac{1}{\pi \gamma[1 + (x-\theta)^2}, -\infty<x<\infty
+\] 
+Find the MLE of $\hat{\theta}$ based on r.s. $X_1,\ldots,X_n$.
+\begin{align*} 
+L(\theta) & = \Pi_{1}^n \frac{1}{\pi \gamma[1 + (x-\theta)^2} \\
+\ell'(\theta) & = \sum_{i=1}^n -\ln(\pi)-\ln[1+(x_i-\theta)^2]
+\end{align*} 
+Thus, the score equation is 
+\[
+\ell'(\theta) = \sum \frac{2(x_i-\theta)}{1+(x_i-\theta)^2} = 0
+\]
+You can't solve for $\theta$ in $\ell'(\theta)$! What can we do? Numerically, approximate solution to $\ell'(\theta)=0$ or numerically find approximate maximizer to $\ell(\theta)$.  
+
+
+\end{document} 
